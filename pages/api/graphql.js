@@ -6,7 +6,7 @@ import "ts-tiny-invariant"; // importing this module as a workaround for issue d
 
 const typeDefs = gql`
   type User {
-    name: ID
+    id: ID
   }
 
   type Query {
