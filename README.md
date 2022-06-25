@@ -1,3 +1,13 @@
+#######################
+
+#
+
+# This is a Proof of concept / playground for Neo4J, GraphQL, Next.js using instructional areas (educational domains, strands, scores) as the seed organizing principle for adaptive learning path.
+
+#
+
+#######################
+
 This project was initiated following Neo4J's example at https://dev.to/lyonwj/building-a-graphql-server-with-next-js-api-routes-g2
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
