@@ -1,3 +1,5 @@
+This project was initiated following Neo4J's example at https://dev.to/lyonwj/building-a-graphql-server-with-next-js-api-routes-g2
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
