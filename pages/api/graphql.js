@@ -5,31 +5,33 @@ import neo4j from "neo4j-driver";
 import "ts-tiny-invariant"; // importing this module as a workaround for issue described here: https://github.com/vercel/vercel/discussions/5846
 
 const typeDefs = gql`
-  type User @exclude(operations: [CREATE, UPDATE, DELETE]) {
-    username: String
-    created: DateTime
-    karma: Int
-    about: String
-    avatar: String
-    articles: [Article] @relationship(type: "SUBMITTED", direction: OUT)
-    invited: [User] @relationship(type: "INVITED_BY", direction: IN)
-    invited_by: [User] @relationship(type: "INVITED_BY", direction: OUT)
+  type User {
+    name: ID
   }
 
-  type Article @exclude(operations: [CREATE, UPDATE, DELETE]) {
-    id: ID
-    url: String
-    score: Int
-    title: String
-    comments: String
-    created: DateTime
-    user: User @relationship(type: "SUBMITTED", direction: IN)
-    tags: [Tag] @relationship(type: "HAS_TAG", direction: OUT)
+  type Query {
+    getUser: User
   }
 
-  type Tag @exclude(operations: [CREATE, UPDATE, DELETE]) {
+  type Subject {
     name: String
-    articles: [Article] @relationship(type: "HAS_TAG", direction: IN)
+  }
+
+  type Grade {
+    name: String
+  }
+
+  type StateStandard {
+    name: String
+  }
+
+  type Test {
+    name: String
+    key: Int
+  }
+  type InstructionalArea {
+    name: String
+    code: Int
   }
 `;
 
@@ -41,6 +43,7 @@ const driver = neo4j.driver(
 const neoSchema = new Neo4jGraphQL({ typeDefs, driver });
 
 const apolloServer = new ApolloServer({
+  typeDefs,
   schema: neoSchema.schema,
   playground: true,
   introspection: true,
