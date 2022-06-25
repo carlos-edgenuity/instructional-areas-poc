@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/ImagineLearning/otk-schema-validator/main/il.yaml/v1.0.json
+      
+meta:
+  owner: undeclared
+  trackingId: 87b2338d-3ea4-45cc-bd63-73d1f4a73a6c
+
+# otk:
+
+# catalog:
+
+spartanzBot:
+  fileChecker:
+    enabled: true
+    comment: true
