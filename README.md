@@ -1,4 +1,4 @@
-> :warning: **This is a Proof of concept** This is a playground for trying out Neo4J, GraphQL, Next.js using Instructional Areas (sometimes referred to as Domains, Educational Domains, and closely related to Strands, Scores, and State Standards) as the seed organizing principle for adaptive learning paths.
+> :warning: **This is a Proof of concept** It is a playground for trying out Neo4J, GraphQL, Next.js using Instructional Areas (sometimes referred to as Domains, Educational Domains, and closely related to Strands, Scores, and State Standards) as the seed organizing principle for adaptive learning paths.
 
 This project was initiated following Neo4J's example at https://dev.to/lyonwj/building-a-graphql-server-with-next-js-api-routes-g2
 

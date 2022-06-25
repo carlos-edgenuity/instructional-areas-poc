@@ -1,0 +1,90 @@
+global:
+  team: armstrong
+  name: instructional-areas
+  title: Instructional Areas for Adaptive Learning
+  type: service
+
+  owner: mpng-product-apps
+  description: Proof of concept for using Instructional Areas (Educational Domains) as the organizing principle for adaptive learning paths.
+  # dependsOn:
+  #   - component:armstrong-mpng-api
+  #   - component:doolittle-doolittle-gateway-service
+  # productsImpacted:
+  #   - imagine-mypath
+  service:
+    port: 3000
+
+  # monitoring:
+  #   endpoint:
+  #     path: /metrics
+  #     port: 8080
+  #     interval: 15s
+
+deployment:
+  terminationGracePeriodSeconds: 120
+  image:
+    cmd: ./run-my-app.sh
+  healthCheck:
+    path: /health
+    port: 3000
+
+  # env:
+  #   instance:
+  #     - name: NEW_RELIC_APP_NAME
+  #       value: $(SERVICE_NAME)-$(NAMESPACE)
+
+virtualservice:
+  gateway:
+    enabled: true
+    hosts:
+      - "*"
+      # - mpng-student.app
+      # - admin.mp.dev.edgenuityapp.com
+      # - admin.mp.qa.edgenuityapp.com
+      # - admin.mp.staging.edgenuityapp.com
+      # - admin.mp.edgenuity.com
+      # - student.mp.dev.edgenuityapp.com
+      # - student.mp.qa.edgenuityapp.com
+      # - student.mp.staging.edgenuityapp.com
+      # - student.mp.edgenuity.com
+    gateways:
+      - gateway
+      - static-website-gateway
+    httpRoutes:
+      - uri:
+          prefix: /api/
+      - uri:
+          exact: /api/graphql
+    rewrite:
+      uri: /
+
+namespaces:
+  staging:
+    deployment:
+      resources:
+        limits:
+          memory: 2Gi
+          cpu: 2000m
+        requests:
+          memory: 1Gi
+          cpu: 1000m
+      autoscaling:
+        minReplicas: 2
+        maxReplicas: 4
+        targetCPUUtilizationPercentage: 85
+        targetMemoryUtilizationPercentage: 85
+
+  # prod:
+  #   deployment:
+  #     resources:
+  #       limits:
+  #         memory: 3Gi
+  #         cpu: 2000m
+  #       requests:
+  #         memory: 2Gi
+  #         cpu: 1000m
+  #     autoscaling:
+  #       minReplicas: 14
+  #       maxReplicas: 18
+  #       targetCPUUtilizationPercentage: 65
+  #       targetMemoryUtilizationPercentage: 65
